@@ -7,7 +7,7 @@ app.set('view engine', 'hbs');
 
 app.use((req,res,next)=> {
     var time = new Date();
- var log =`${time}: ${req.method} ${req.url} `;
+ var log =`${time}: ${req.method} ${req.url} \n`;
     console.log(log);
     fs.appendFile('server.log',log);
 
@@ -20,6 +20,7 @@ app.use((req,res,next)=> {
 //     pageInfo  : 'Come back soon.',
 //     pageDescription : 'This page is currently under maintenenance'
 // })
+// next();
 // });
 
 
@@ -53,6 +54,15 @@ app.get('/about',(req,res)=> {
     res.render('about.hbs', {
         pageTitle : "About page"
 })
+});
+
+app.get('/projects',(req,res)=> {
+    res.render('projects.hbs', {
+        pageTitle: "Projects page / Portfolio",
+        pageInfo: "These are the projects I have made."
+});
+
+
 });
 
 app.get('/bad',(req,res)=>{
